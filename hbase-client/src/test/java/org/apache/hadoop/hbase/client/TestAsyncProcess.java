@@ -1185,7 +1185,7 @@ public class TestAsyncProcess {
     assertTrue(action_2.equals(action_3));
     assertFalse(action_0.equals(action_3));
     assertEquals(0, action_0.compareTo(action_0));
-    assertEquals(-1, action_0.compareTo(action_1));
+    assertEquals(-2, action_0.compareTo(action_1));
     assertEquals(1, action_1.compareTo(action_0));
     assertEquals(0, action_1.compareTo(action_2));
   }
