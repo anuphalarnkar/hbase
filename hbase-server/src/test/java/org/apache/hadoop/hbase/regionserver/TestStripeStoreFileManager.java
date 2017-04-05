@@ -323,9 +323,9 @@ public class TestStripeStoreFileManager {
     // Current "algorithm" will see the after-B key before C key, add it as valid stripe,
     // and then fail all other stripes. So everything would end up in L0.
     ArrayList<StoreFile> allFilesToGo = al(createFile(OPEN_KEY, KEY_B),
-        createFile(KEY_B, KEY_C), createFile(KEY_C, OPEN_KEY),
+    //    createFile(KEY_B, KEY_C), createFile(KEY_C, OPEN_KEY),
         createFile(KEY_B, keyAfter(KEY_B)));
-    //Collections.shuffle(allFilesToGo);
+    Collections.shuffle(allFilesToGo);
     StripeStoreFileManager manager = createManager(allFilesToGo);
     assertEquals(allFilesToGo.size(), manager.getLevel0Files().size());
   }
