@@ -301,7 +301,11 @@ public class TestStripeStoreFileManager {
     // In L0, there will be file w/o metadata (real L0, 3 files with invalid metadata, and 3
     // files that overlap valid stripes in various ways). Note that the 4th way to overlap the
     // stripes will cause the structure to be mostly scraped, and is tested separately.
-    ArrayList<StoreFile> validStripeFiles = al(createFile(OPEN_KEY, KEY_B),
+    int size;
+    ArrayList<StoreFile> validStripeFiles = new ArrayList<>();
+    size = validStripeFiles.size();
+    validStripeFiles.ensureCapacity(size+500);
+    validStripeFiles = al(createFile(OPEN_KEY, KEY_B),
         createFile(KEY_B, KEY_C), createFile(KEY_C, OPEN_KEY),
         createFile(KEY_C, OPEN_KEY));
     ArrayList<StoreFile> filesToGoToL0 = al(createFile(), createFile(null, KEY_A),
@@ -322,7 +326,11 @@ public class TestStripeStoreFileManager {
   public void testLoadFilesWithBadStripe() throws Exception {
     // Current "algorithm" will see the after-B key before C key, add it as valid stripe,
     // and then fail all other stripes. So everything would end up in L0.
-    ArrayList<StoreFile> allFilesToGo = al(createFile(OPEN_KEY, KEY_B),
+    int size;
+    ArrayList<StoreFile> allFilesToGo = new ArrayList<>();
+    size = allFilesToGo.size();
+    allFilesToGo.ensureCapacity(size+500);	
+    allFilesToGo = al(createFile(OPEN_KEY, KEY_B),
     //    createFile(KEY_B, KEY_C), createFile(KEY_C, OPEN_KEY),
         createFile(KEY_B, keyAfter(KEY_B)));
     Collections.shuffle(allFilesToGo);
